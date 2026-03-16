@@ -463,16 +463,45 @@ main {
 
 /* GRID & SECTION */
 .events-section {
+  position: relative;
   padding: 4rem 2rem;
   color: #ffffff;
+  overflow: hidden; /* hides the blur edges so no white border appears */
+}
+
+/* Background image with blur */
+.events-section .background-image {
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  right: -100px;
+  bottom: -100px; /* extend beyond the edges */
+  background-image: url('/vsa_page/asset/images/vietnight_poster.png');
+  background-size: cover;
+  background-position: center;
+  filter: blur(20px) brightness(0.4);
+  z-index: 0;
+}
+
+/* Content on top of blurred image */
+.events-section .events-content {
+  position: relative;
+  z-index: 1; /* on top of blurred background */
+}
+
+.events-section .background-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3); /* subtle dark overlay */
 }
 
 /* Section Title */
 .event-title {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 4.5rem;
   margin-bottom: 2rem;
-  color: #fff;
+  color: #ffffff;
 }
 
 /* Events Grid */
@@ -487,6 +516,7 @@ main {
   overflow: hidden;
   border-radius: 12px;
   cursor: pointer;
+  width: 80%;
 }
 
 .event-bg {
@@ -538,6 +568,175 @@ main {
   font-weight: bold;
   font-size: 1rem;
   color: var(--primary-color); /* primary color */
+}
+
+/* Both wrappers use same max width */
+.poster-wrapper,
+.video-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 80%; /* same visual width for both */
+  gap:10px;
+  width: 100%;
+}
+
+/* Poster image fills wrapper */
+.poster-wrapper .event-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
+}
+
+/* Video cards fill wrapper width */
+.video-wrapper .event-video-card {
+  width: 100%;
+}
+
+.section-heading {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.event-wrapper{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:10px;
+    align-items:stretch;
+}
+
+/* VIDEO CARD */
+
+.event-video-card{
+    position:relative;
+    aspect-ratio:1/1;
+    border-radius:14px;
+    overflow:hidden;
+    cursor:pointer;
+}
+
+.event-video-card video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:0.5s;
+}
+
+/* GLASS OVERLAY */
+
+.video-overlay{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+
+    padding:14px;
+
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,0.6),
+        rgba(0,0,0,0.1)
+    );
+}
+
+
+.event-video-card:hover video{
+    transform:scale(1.05);
+}
+
+.event-video-card video{
+    transition:0.4s;
+}
+
+.video-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.85);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+}
+
+.video-label{
+    align-self:flex-start;
+
+    backdrop-filter:blur(8px);
+    background:rgba(255,255,255,0.15);
+
+    color:white;
+
+    padding:6px 12px;
+    border-radius:20px;
+
+    font-size:13px;
+    font-weight:600;
+}
+
+.video-modal.active{
+    display:flex;
+}
+
+.video-content{
+    width:80%;
+    max-width:900px;
+    position:relative;
+}
+
+.video-content video{
+    width:100%;
+    border-radius:10px;
+}
+
+.video-close{
+    position:absolute;
+    top:-40px;
+    right:0;
+    color:white;
+    font-size:32px;
+    cursor:pointer;
+}
+
+.play-button{
+    align-self:center;
+
+    width:70px;
+    height:70px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,0.2);
+    backdrop-filter:blur(10px);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:0.3s;
+}
+
+/* Play Button */
+
+.play-button i{
+    color:white;
+    font-size:34px;
+}
+
+/* HOVER EFFECT */
+
+.event-video-card:hover video{
+    transform:scale(1.08);
+}
+
+.event-video-card:hover .play-button{
+    transform:scale(1.15);
+    background:rgba(255,255,255,0.35);
 }
 
 /* Lightbox Modal */

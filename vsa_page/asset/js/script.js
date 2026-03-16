@@ -8,6 +8,36 @@ document.addEventListener("DOMContentLoaded", () => {
   const descEl = document.getElementById("lightboxDesc");
   const eventLink = document.getElementById("eventLink");
 
+const videoCards = document.querySelectorAll(".event-video-card");
+const videoModal = document.getElementById("videoModal");
+const videoPlayer = document.getElementById("eventVideo");
+const videoClose = document.getElementById("videoClose");
+
+videoCards.forEach(card => {
+
+    card.addEventListener("click", () => {
+
+        const videoSrc = card.dataset.video;
+
+        videoPlayer.src = videoSrc;
+
+        videoModal.classList.add("active");
+
+        videoPlayer.play();
+    });
+
+});
+
+videoClose.addEventListener("click", () => {
+
+    videoModal.classList.remove("active");
+
+    videoPlayer.pause();
+
+    videoPlayer.src="";
+
+});
+
   document.querySelectorAll(".event-card").forEach(card => {
     card.addEventListener("click", () => {
       const img = card.querySelector("img");
