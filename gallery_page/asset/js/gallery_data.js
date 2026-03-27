@@ -23,6 +23,22 @@ const albums = {
         year:"2025_2026"
     },
 
+    "2025_granny": {
+        title: "Granny",
+        caterogy: "GBM",
+        description: "Granny GBM brought fun twists to every game, nonstop laughter, and the constant pressure of being hunted down by grannies around the room!",
+        count: 113,
+        year:"2025_2026"
+    },
+
+    "2025_tet": {
+        title: "Tết Năm Mới",
+        caterogy: "GBM",
+        description: "From games and prizes to sharing traditions and laughter, it was such a special night welcoming new beginnings together!",
+        count: 175,
+        year:"2025_2026"
+    },
+
     "2024_viet_night": {
         title: "Lanterns of Legacy",
         caterogy: "VietNight",
